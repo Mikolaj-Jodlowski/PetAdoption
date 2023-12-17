@@ -1,0 +1,62 @@
+﻿@using Contentful.Core.Models
+
+@model ContentfulCollection<Pet>
+
+    <style>
+        body {
+            background-color: #ffd700;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background-color: #ffcc80;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background-color: #ffa500;
+                border-color: #ffa500;
+            }
+    </style>
+
+    <div class="container">
+        <h1 class="title">Welcome to Appdopt!</h1>
+        <p>Find your perfect pet companion. Click below to explore our furry friends.</p>
+
+        @if (Model != null && Model.Items.Any())
+    {
+        <div class="pet-collage">
+            @foreach (var pet in Model.Take(10)) 
+            {
+            if (pet.Image.Any())
+            {
+            <img src="@pet.Image.First().File.Url" alt="Pet Image" class="img-thumbnail" style="max-width: 100px; margin: 5px;" />
+            }
+            }
+        </div>
+    }
+
+        <button type="button" class="btn btn-primary" onclick="redirectToPets()">Check out our pets!</button>
+    </div>
+
+    <script>
+    function redirectToPets() {
+        window.location.href = '@Url.Action("Pets", "Home")';
+    }
+    </script>

@@ -1,0 +1,78 @@
+@using Contentful.Core.Models
+
+@model ContentfulCollection<Pet>
+
+    @{
+    ViewData["Title"] = "Home Page";
+    }
+
+    <style>
+        body {
+            background-color: #ffd700;
+        }
+
+        .container {
+            background-color: #ffcc80;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #ffe4b5;
+            border: 1px solid #ffe4b5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            background-color: #ffd700;
+        }
+
+        .btn-primary {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+            .btn-primary:hover {
+                background-color: #ffa500;
+                border-color: #ffa500;
+            }
+    </style>
+
+    <div class="container">
+        <h1 class="mt-5 mb-4 text-center">Adopt a Pet!</h1>
+
+        @foreach (var pet in Model)
+    {
+        <div class="card mb-4">
+            <div class="row justify-content-center">
+                @foreach (var image in pet.Image)
+                {
+                <div class="col-md-4">
+                    <img src="@image.File.Url" alt="Pet Image" class="img-fluid mb-2" style="max-height: 350px; border-radius: 10px 10px 0 0; padding:1rem;" />
+                </div>
+                }
+            </div>
+
+            <div class="card-body text-center">
+                <h5 class="card-title">@pet.Name</h5>
+                <p class="card-text">Age: @pet.Age</p>
+                <p class="card-text">Sex: @pet.Sex</p>
+                <p class="card-text">Breed: @pet.Breed</p>
+                <p class="card-text">Castrated: @((pet.Castrated) ? "Yes" : "No")</p>
+                <p class="card-text">Adopted: @((pet.Adopted) ? "Yes" : "No")</p>
+                <p class="card-text">Description: @pet.Description</p>
+
+                <a href="@Url.Action("Formula", "Home")" class="btn btn-primary mt-2">Adopt me</a>
+            </div>
+        </div>
+    }
+
+        <div class="text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-4">Back to Homepage</a>
+        </div>
+    </div>

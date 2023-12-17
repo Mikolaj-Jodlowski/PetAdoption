@@ -1,0 +1,184 @@
+﻿@using Contentful.Core.Models
+
+@model ContentfulCollection<Pet>
+
+    @{
+    ViewData["Title"] = "Formula";
+    }
+
+    <style>
+        body {
+            background-color: #ffd700;
+        }
+
+        .container {
+            background-color: #ffcc80;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #ffe4b5;
+            border: 1px solid #ffe4b5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            background-color: #ffd700;
+        }
+
+        .btn-primary {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+            .btn-primary:hover {
+                background-color: #ffa500;
+                border-color: #ffa500;
+            }
+
+        /* Adoption Form Styling */
+        #adoptionForm {
+            background-color: #ffe4b5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+            #adoptionForm h5 {
+                color: #ff8c00;
+            }
+
+            #adoptionForm label {
+                color: #ff8c00;
+            }
+
+            #adoptionForm .form-control {
+                background-color: #ffd700;
+                color: #000;
+            }
+
+            #adoptionForm .btn-primary {
+                background-color: #ff8c00;
+                border-color: #ff8c00;
+                color: #fff;
+            }
+
+                #adoptionForm .btn-primary:hover {
+                    background-color: #ffa500;
+                    border-color: #ffa500;
+                }
+
+        /* Back to Homepage Button Styling */
+        .btn-back-to-home {
+            background-color: #ffd700;
+            border-color: #ffd700;
+            color: #000;
+            margin-top: 20px;
+        }
+
+            .btn-back-to-home:hover {
+                background-color: #ff8c00;
+                border-color: #ff8c00;
+                color: #fff;
+            }
+    </style><div id="adoptionForm">
+        <h5 class="text-center mb-4">Adoption Form</h5>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" placeholder="Enter your age">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Enter your address">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label>Do you have kids?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="haveKids" id="kidsYes" value="yes">
+                    <label class="form-check-label" for="kidsYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="haveKids" id="kidsNo" value="no">
+                    <label class="form-check-label" for="kidsNo">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="numberOfKids">If yes, how many?</label>
+                <input type="number" class="form-control" id="numberOfKids" placeholder="Enter the number of kids">
+            </div>
+            <div class="form-group">
+                <label>Do you have other pets?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="haveOtherPets" id="otherPetsYes" value="yes">
+                    <label class="form-check-label" for="otherPetsYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="haveOtherPets" id="otherPetsNo" value="no">
+                    <label class="form-check-label" for="otherPetsNo">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="otherPetsInfo">If yes, what and how many?</label>
+                <textarea class="form-control" id="otherPetsInfo" rows="3" placeholder="Enter information about other pets"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#thankYouModal">Submit</button>
+        </form>
+        <div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Thank you. We will contact you shortly.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        var form = document.getElementById('adoptionForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Redirect to the index page
+            window.location.href = '@Url.Action("Index", "Home")';
+
+            // Show the modal
+            $('#thankYouModal').modal('show');
+        });
+    });
+    </script>
