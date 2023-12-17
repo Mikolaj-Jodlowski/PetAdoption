@@ -22,7 +22,7 @@ jobs:
         with:
           registry: docker.io
           username: "${{ secrets.mikolajjodlowski }}"
-          password: "${{ secrets.dckr_pat_PJM_VMC5GzUWTlBZDHN3n5BZYNE }}"
+          password: "${{ secrets.dckr_pat_XZ97NQ20JwpQS2vK3Ncz9dWMWig }}"
 
       - name: Tag image
         run: docker tag mikolajjodlowski/petadoption-mj:latest mikolajjodlowski/petadoption-mj:latest

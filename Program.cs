@@ -19,7 +19,7 @@ public class Program
         .ConfigureWebHostDefaults(webBuilder =>
         {
             webBuilder.UseStartup<Startup>();
-            webBuilder.UseUrls("http://0.0.0.0:5013");  // Adjust the port here
+            webBuilder.UseUrls("http://0.0.0.0:5013");  // 
         });
 
 }
@@ -35,14 +35,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        // Contentful Configuration
         services.AddContentful(Configuration);
 
-        // Add your services
-        services.AddTransient<PetService>(); // Adjust based on your actual service structure
+        services.AddTransient<PetService>();
 
-        services.AddMvc(); // Add this line if MVC is not already added
-        services.AddControllers(); // Add this line if controllers are not already added
+        services.AddMvc();
+        services.AddControllers(); 
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
