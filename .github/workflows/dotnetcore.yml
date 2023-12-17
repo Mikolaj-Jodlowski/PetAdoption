@@ -19,7 +19,7 @@ jobs:
         with:
           registry: docker.io
           username: "${{ secrets.mikolajjodlowski }}"
-          password: "${{ secrets.dckr_pat_g6CCdv0VTESJwL7hmTHIiVXnBl0 }}"
+          password: "${{ secrets.Kszykszy135246 }}"
           repository: mikolajjodlowski/petadoption-mj
           tag_with_ref: true
 
