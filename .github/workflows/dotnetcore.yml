@@ -3,8 +3,9 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main
-       workflow_dispatch
+      - master
+  workflow_dispatch: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
         run: docker build -t petadoption-mj:latest .
 
       - name: Push Docker image to Docker Hub
-        run: >
-          docker login -u ${{ secrets.mikolajjodlowski }} -p ${{ secrets.Kszykszy135246 }} &&
-          docker tag petadoption-mj:latest mikolajjodlowski/petadoption-mj:latest &&
+        run: |
+          docker login -u ${{ secrets.mikolajjodlowski }} -p ${{ secrets.Kszykszy135246 }}
+          docker tag petadoption-mj:latest mikolajjodlowski/petadoption-mj:latest
           docker push mikolajjodlowski/petadoption-mj:latest
